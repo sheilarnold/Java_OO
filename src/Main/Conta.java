@@ -1,28 +1,13 @@
 package Main;
 
 public class Conta {
-	private double saldo;
-	private String numConta, titular;
+	private String tipo, titular;
+	private int agencia;
+	private double saldo = 0;
+	PessoaJuridica juridica;
+	PessoaFisica fisica;
 	
-	public Conta(double saldo, String numConta, String titular) {
 		this.saldo = saldo;
-		this.numConta = numConta;
-		this.titular = titular;
-	}
-	
-	public double getSaldo() {
-		return saldo;
-	}
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
-	public String getNumConta() {
-		return numConta;
-	}
-	public void setNumConta(String numConta) {
-		this.numConta = numConta;
-	}
-	
 	public String getTitular() {
 		return titular;
 	}
@@ -31,13 +16,51 @@ public class Conta {
 		this.titular = titular;
 	}
 
-	public void imprimirDados() {
-		System.out.println("Titular: " + getTitular() + "\nConta: " + getNumConta() + "\nSaldo: " + getSaldo());
+	public PessoaJuridica getJuridica() {
+		return juridica;
+	}
+
+	public void setJuridica(PessoaJuridica juridica) {
+		this.juridica = juridica;
+	}
+
+	public PessoaFisica getFisica() {
+		return fisica;
+	}
+
+	public void setFisica(PessoaFisica fisica) {
+		this.fisica = fisica;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
 	}
 	
-	public void deposito(double valor) {
-		this.saldo += valor;
+	public int getAgencia() {
+		return agencia;
+	}
+	public void setAgencia(int agencia) {
+		this.agencia = agencia;
 	}
 	
+	public double getSaldo() {
+		return saldo;
+	}
 	
+	public boolean deposita(double valor) {
+		if(valor >= 0) {
+			this.saldo += valor;
+			return(true);
+		}else {
+			return(false);
+		}
+	}
 }
