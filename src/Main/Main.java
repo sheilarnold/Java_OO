@@ -84,16 +84,18 @@ public class Main {
 					if(valor <= c1.getSaldo()) {
 						if(c1.saca(valor)) {
 							System.out.println("\nSaque realizado com sucesso!");
+						}else {
+							System.out.println("\nOcorreu um erro ao realizar a transação!\n");
+						}
 					}else {
-						System.out.print("\nO valor informado para o saque é maior do que o valor presente na conta, por favor, tente novamente mais tarde.\nOBS:. Certifique-se de que o valor a ser sacado é menor ou igual ao valor presente na conta.\n");
-					}
+						System.out.print("\nO valor informado para o saque é maior do que o valor presente na conta, por favor, tente novamente mais tarde.\nOBS:. Certifique-se de que o valor a ser sacado é menor ou igual ao valor presente na conta.\n");}
 				}else {
-					System.out.println("O saque não pode ser realizado pois não foi debitado nenhum valor à conta em questão, por favor, tente novamente mais tarde.\nOBS:. Certifique-se de que a conta possui saldo antes de tentar ralizar algum saque.");
+						System.out.println("O saque não pode ser realizado pois não foi debitado nenhum valor à conta em questão, por favor, tente novamente mais tarde.\nOBS:. Certifique-se de que a conta possui saldo antes de tentar ralizar algum saque.");
 				}
 			}else if ((op != 0) && (op != 1) && (op != 0)) {
 				System.out.println("Opção inexistente!\n");
 			}
-			c1.informações();
+			c1.informacoes();
 		}
 	}
 }
