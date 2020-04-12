@@ -23,6 +23,7 @@ public class Main {
 				
 				System.out.print("Informe o seu CPF: ");
 				input = new Scanner(System.in);
+				
 				c1.getFisica().setCpf(input.nextInt());
 				
 				System.out.print("Informe o seu endereço: ");
@@ -63,30 +64,36 @@ public class Main {
 		
 		input = new Scanner(System.in);
 		int op = 1;
+		
 		while(op != 0) {
-			System.out.print("Deseja realizar algum depósito?\n1 - Sim\n0 - Não\n.:");
+			System.out.print("\nDeseja realizar alguma dessas transações?\n    1 - Depósito\n    2 - Saque\n    0 - Sair\n:.");
 			input = new Scanner(System.in);
 			op = input.nextInt();
 			if(op == 1) {
 				System.out.print("Informe o valor de depósito: ");
 				double deposito = input.nextDouble();
 				if(c1.deposita(deposito)) {
-					System.out.println("\nDepósito realizado com sucesso!\n\n");
+					System.out.println("\nDepósito realizado com sucesso!");
 				}else {
-					System.out.println("\nOcorreu um erro ao realizar a transação!\n\n");
+					System.out.println("\nOcorreu um erro ao realizar a transação!\n");
 				}
-			}if((op != 0) && (op != 1)) {
+			}else if(op == 2) {
+				if(c1.getSaldo() != 0) {
+					System.out.print("Informe o valor de saque: ");
+					double valor = input.nextDouble();
+					if(valor <= c1.getSaldo()) {
+						if(c1.saca(valor)) {
+							System.out.println("\nSaque realizado com sucesso!");
+					}else {
+						System.out.print("\nO valor informado para o saque é maior do que o valor presente na conta, por favor, tente novamente mais tarde.\nOBS:. Certifique-se de que o valor a ser sacado é menor ou igual ao valor presente na conta.\n");
+					}
+				}else {
+					System.out.println("O saque não pode ser realizado pois não foi debitado nenhum valor à conta em questão, por favor, tente novamente mais tarde.\nOBS:. Certifique-se de que a conta possui saldo antes de tentar ralizar algum saque.");
+				}
+			}else if ((op != 0) && (op != 1) && (op != 0)) {
 				System.out.println("Opção inexistente!\n");
 			}
+			c1.informações();
 		}
-						
-		System.out.println("\n*******************");
-		System.out.print("Pessoa " + c1.getTipo() + "\n   Titular: " + c1.getTitular());
-		if(c1.getTipo() == "Física") {
-			System.out.print("\n   CPF: " + c1.getFisica().getCpf() + "\n   Endereço: " + c1.getFisica().getEndereco());
-		}else if(c1.getTipo() == "Jurídica"){
-			System.out.print("\n   CNPJ: " + c1.getJuridica().getCnpj() + "\n   Endereço: " + c1.getJuridica().getEndereco());
-		}
-		System.out.print("\n\nDados da conta:\n   Agência: " + c1.getAgencia() + "\n   Saldo: " + c1.getSaldo());
 	}
 }

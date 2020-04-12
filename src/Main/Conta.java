@@ -7,7 +7,6 @@ public class Conta {
 	PessoaJuridica juridica;
 	PessoaFisica fisica;
 	
-		this.saldo = saldo;
 	public String getTitular() {
 		return titular;
 	}
